@@ -1,0 +1,78 @@
+- 반복문
+    조건을 만족하는 동안 {}를 (0번 or n번) 수행.
+
+- for 문 (반복문)
+    조건을 만족하는 동안 블럭{}을 반복 = 반복횟수를 알 때.
+
+    for (초기화; 조건식; 증감식) {
+            // 수행될 문장들.
+    }
+
+    for (int i = 0; i <= 5; i++) { // 0 부터 5까지 1씩 증가.
+        System.out.println("I can do it");
+    }
+
+- while 문
+    조건을 만족시키는 동안 블럭{}을 반복 = 반복횟수 모를 때.
+
+    while (조건식) {
+        // 조건식의 연산결과가 참인 동안, 반복될 문장들을 적는다.
+    }
+
+    int i = 1; // 초기화.
+    while (i <= 10) {
+        System.out.println(i);
+        i++;
+    }
+
+- do-while 문
+    블럭{} 을 최소한 한 번 이상 반복 = 사용자 입력받을 때 유용
+
+    do {
+        // 조건식의 연산결과가 참일 때 수행될 문장들(처음 한 번은 무조건 실행)
+    } while (조건식); <- 끝에 ' ; '을 잊지 않도록 주의
+
+- break 문
+    자신이 포함된 하나의 반복문을 벗어난다.
+
+    ex)
+        int sum = 0;
+        int i = 0;
+
+        while (true) { // 무한 반복문 === for(;(true 생략가능);) {}
+            if(sum > 100) {
+                break; // 자신이 속한 하나의 반복문을 벗어난다.
+            }
+            ++i;        // break 문이 수행되면 이 부분은 실행되지
+            sum += i;   // 않고 while 문을 완전히 벗어난다.
+        }
+
+        System.out.println("i = " + i);
+        System.out.println("sum = " + sum);
+
+- continue 문
+    자신이 포함된 반복문의 끝으로 이동 = 다음 반복문으로 넘어간다.
+
+    ex)
+        for(int i = 0; i <= 10; i++) {
+            if(i % 3 == 0) {        // 조건식이 참이 되어 continue 문이 수행되면
+                continue;           // 블럭의 끝으로 이동한다.
+            }                       // break 문과 달리 반복문을 벗어나지 않는다.
+            System.out.println(i);
+        }
+
+- 이름붙은 반복문
+    반복문에 이름을 붙여서 하나 이상의 반복문을 벗어날 수 있다.
+
+    ex)
+        // for 문 앞에 Loop1이라는 이름을 붙였다.
+        Loop1 : for (int i = 2; i <= 9; i++) {
+            for (int j = 1; j <= 9; j++) {
+                if  (j == 5) {
+                    break Loop1;
+                    // break;
+                    System.out.println(i + " * " + j + " = " + i * j);
+                }
+                System.out.println();
+            }
+        }
