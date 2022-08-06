@@ -10,6 +10,10 @@
 
 - 클래스와 객체
     클래스의 정의 -- 클래스란 객체를 정의해 놓은 것
+        1) 설계도
+        2) 데이터 + 함수
+        3) 사용자정의 타입
+
     클래스의 용도 -- 클래스는 객체를 생성하는데 사용
 
     객체의 정의 -- 실제로 존재하는 것, 사물 또는 개념
@@ -20,3 +24,341 @@
             TV 설계도       TV
 
 - 객체의 구성 요소 -- 속성과 기능
+    객체 = 속성(변수) + 기능(메서드) == 변수를 묶어놓은 것
+
+    ex) TV
+    속성 - 크기, 길이, 높이, 색상, 볼륨, 채널 등
+    기능 - 켜기, 끄기, 볼륨업, 볼륨다운, 채널 변경 등
+
+    // Tv 클래스 만들기
+    class Tv { // Tv 설계도
+        // 변수
+        String color; // 색깔
+        boolean power; // 전원상태
+        int channel; // 채널
+
+        // 메서드
+        void power() { power = !power; }
+        void channelUp() { channel++; }
+        void channelDown() { channel--; }
+    }
+
+- 객체와 인스턴스
+    객체 : 모든 인스턴스를 대포하는 일반적인 용어
+    인스턴스 : 특정 클래스로부터 생성된 객체 (ex Tv 인스턴스)
+
+                 인스턴스화
+        클래스 --------------> 인스턴스(객체)
+
+    클래스(설계도)가 왜 필요한가?
+    -> 객체(제품)를 생성하기 위해
+
+    객체(제품)가 왜 필요한가?
+    -> 객체(제품)를 사용하기 위해
+
+    객체(제품)를 사용한다는 것은?
+    -> 객체(제품)가 가진 속성(변수)과 기능(메서드)을 사용하기 위해
+
+- 하나의 소스프일에 여러 클래스 작성
+
+        올바른 작성 예                               설명
+
+    Hello2.java
+    public class Hello2{}       public class 가 있는 경우, 소스파일의 이름은 반드시
+           class Hello3{}       public class 의 이름과 일치해야 한다.
+
+    Hello2.java
+    class Hello2{}              public class 가 하나도 없는 경우, 소스파일의 이름은
+    class Hello3{}              'Hello2.java', 'Hello3.java' 둘 다 가능하다.
+
+        잘못된 작성 예                               설명
+
+    Hello2.java
+    public class Hello2{}       하나의 소스파일에 둘 이상의 public class 가 존지하면 안된다.
+    public class Hello3{}       각 클래스를 별도의 소스파일에 나눠서 저장하던가 아니면
+                                둘 중 하나의 클래스에 public 을 붙이지 않아야 한다.
+
+    Hello3.java
+    public class Hello2{}       소스파일의 이름이 public class 의 이름과 일치 하지 않는다.
+           class Hello3{}       소스파일의 이름을 'Hello2.java' 로 변경해야 한다.
+
+    hello2.java
+    public class Hello2{}       소스파일의 이름과 public class 의 이름이 일치 하지 않는다.
+           class Hello3{}       대소문자를 구분하므로 대소문자까지 일치해야 한다.
+                                그래서, 소스파일의 이름에서 'h' 를 'H' 로 바꿔야 한다.
+
+- 객체의 생성과 사용
+    1) 클래스 작성
+    2) 객체 생성
+    3) 객체 사용
+
+    1. 객체의 생성
+        클래스명 변수명;           // 클래스의 객체를 참조하기 위한 참조변수를 선언
+        변수명 = new 클래스명();   // 클래스의 객체를 생성 후, 객체의 주소를 참조변수에 저장
+
+        ex)
+        Tv t;           // Tv 클래스 타입의 참조변수 t 를 선언
+        t = new Tv();   // Tv 인스턴스를 생성한 후, 생성된 Tv 인스턴스의 주소를 t 에 저장
+
+        -> Tv t = new Tv(); // 위 두개의 문장을 하나로 합칠 수 있다.
+
+    2. 객체의 사용
+
+        t.channel = 7;      // Tv 인스턴스의 맴버변수 channel 의 값을 7 로 한다.
+        t.channelDown();    // Tv 인스턴스의 메서드 channelDown() 을 호출한다.
+        System.out.println("현재 채널은 " + t.channel + " 입니다.");
+
+- 객체의 생성과 사용 -- 예제
+
+    Tv t1 = new Tv();
+    Tv t2 = new Tv();
+
+    t1.channel = 7;
+
+    System.out.println("t1.channel 값은 " + t1.channel + " 입니다."); // 7 출력
+    System.out.println("t2.channel 값은 " + t2.channel + " 입니다."); // 0 출력
+
+- 객체 배열
+    객체 배열 == 참조변수 배열
+
+    Tv tv1, tv2, tv3 -----------> Tv[] tvArr = new Tv[3];
+
+    Tv[] tvArr = new Tv[3]; // 길이가 3인 Tv 타입의 참조변수 배열(객체 배열)
+
+    // 객체를 생성해서 배열의 각 요소에 저장
+    tvArr[0] = new Tv();
+    tvArr[1] = new Tv();
+    tvArr[2] = new Tv();
+
+    -> Tv[] tvArr = { new Tv(), new Tv(), new Tv() };
+
+- 클래스의 정의(1)
+    클래스 == 데이터 + 함수(메서드)
+
+    변수  ->  배열  ->  구조체 ->  클래스
+     1         1         1         1
+               2       10.0f     10.0f  + 함수(메서드)
+               3        'a'       'a'
+
+    1. 변수 - 하나의 데이터를 저장할 수 있는 공간
+    2. 배열 - 같은 종류의 여러 데이터를 하나로 저장할 수 있는 공간
+    3. 구조체 - 서로 관련된 여러 데이터(종류 관계 X)를 하나로 저장할 수 있는 공간
+    4. 클래스 - 데이터와 함수(메서드)의 결합(구조체 + 함수(메서드))
+
+- 클래스의 정의(2)
+    사용자 정의 타입 - 원하는 타입을 직접 만들 수 있다.
+
+                                            class Time {
+                                                int hour;
+                                                int minute;
+                                                int second;
+                                            }
+    int hour;
+    int minute;  ----------------------->   Time t = new Time();
+    int second;
+
+    int hour1, hour2, hour3;                Time t1 = new Time();
+    int minute1, minute2, minute3; ------>  Time t2 = new Time();
+    int second1, second2, second3;          Time t3 = new Time();
+
+                                            Time[] t = new Time[3];
+    int[] hour = new int[3];                t[0] = new Time();
+    int[] minute = new int[3];  ----------> t[1] = new Time();
+    int[] second = new int[3];              t[2] = new Time();
+
+    비 객체지향적인 코드       객체지향적인 코드
+                            Time t = new Time();
+    int hour = 12;          t.hour = 12;
+    int minute = 34; ---->  t.minute = 34;
+    int second = 56;        t.second = 56;
+
+- 선언위치에 따른 변수의 종류
+
+    class Variables { // 클래스 영역
+
+        int iv;         // 인스턴스 변수
+        static int cv;  // 클래스 변수(static 변수, 공유변수)
+
+        void method() { // 메서드 영역
+
+            int lv = 0; // 지역변수
+        }
+    }
+
+    영역 - 클래스 영역 -> iv, cv( static + iv)
+            선언문만 가능(변수 선언, 메서드선언)
+            순서는 상관없다. 일반적으로 변수선언부터 한다.
+        - 메서드 영역 -> lv
+
+    변수의 종류           선언위치                    생성시기
+    클래스변수           클래스영역            클래스가 메모리에 올라갈 때
+    인스턴스변수         클래스영역            인스턴스가 생성되었을 때(객체 생성) ***
+    지역변수       클래스 영역 이외의 영역      변수 선언문이 수행되었을 때
+              (메서드 생성자, 초기화 블럭내부)
+
+- 클래스 변수와 인스턴스 변수
+    공통으로 분류 되어야 하는 변수 앞에 static 을 붙여 클래스 변수로 만든다.
+
+    ex) 카드                         class Card {
+            무늬      인스턴스변수      String kind; // 무늬
+            숫자   --------------->   int number; // 숫자
+                      (개별 속성)
+    속성
+            폭        클래스변수        static int width = 100; // 폭
+            높이   --------------->    static int height = 250; // 높이
+                     (공통 속성)
+    기능     ...                      }
+
+    Card c = new Card(); // 객체 생성
+    // 참조변수 사용
+    c.kind = "HEART";
+    c.number = 5;
+
+    // 클래스이름 사용
+    Card.width = 100;
+    Card.height = 250;
+
+- 메서드
+    1. 문장들을 묶어놓은 것                                // 메서드
+                                                        static void printArr(int[] numArr) {
+    for (int i = 0; i < 10; i++) {                          for (int i = 0; i < 10; i++ {
+        numArr[i] = (int) (Math.random() * 10);                 System.out.printf("%d", numArr[i]);
+    }                                                       }
+                                                            System.out.println();
+    for (int i = 0; i < 10; i++) {                      }
+        System.out.printf("%d", numArr[i]);
+    }                                         ----->      public static void main(String args[]) {
+    System.out.println();                                   for (int = 0; i < 10; i++) {
+            ... 중간 생략 ...                                   numArr[i] = (int) (Math.random() * 10);
+    for (int i = 0; i < 10; i++) {                          }
+        System.out.printf("%d", numArr[i]);                 printArr(numArr); // 배열을 출력, 메소드 호출
+    }                                                               ... 중간 생략 ...
+    System.out.println();                                   printArr(numArr); // 배열을 출력, 메소드 호출
+
+    -> 코드 중복                                            -> 메소드를 사용합으로써 코드 간결화, 중복 코드 제거
+
+    2. 값(입력)을 받아서 처리하고, 결과를 반환(출력)
+    반환타입(출력) 매개변수선언(입력)
+         |             |
+        int add (int x, int y) {
+             |
+          메서드이름
+            int result = x + y;
+
+            return result; // 결과를 반환
+        }
+
+- 메서드의 장점
+    -- 코드의 중복을 줄일 수 있다.
+    -- 코드의 관리가 쉽다.
+    -- 코드를 재사용할 수 있다.
+    -- 코드가 간결해서 이해하기 쉬워진다.
+
+- 메서드의 작성
+    -- 반복적으로 수행되는 여러 무장을 메서드로 작성
+    -- 하나의 메서드는 한 가지 기능만 수행하도록 작성
+
+    메서드 = 선언부 + 구현부
+
+    반환타입 메서드이름 (타입 변수명, 타입 변수명, ...) -> 선언부
+    {
+        // 메서드 호출수 수행될 코드                  -> 구현부
+    }
+
+    ex)
+    int add(int a, int b)
+    {
+        int result = a + b;
+        return result; // 호출한 메서드로 결과를 반환한다.
+    }
+
+- 메서드의 구현부
+    지역변수(lv) : 메서드영역 내에 선언된 변수, (매개변수포함)
+
+    // 지역변수 : x, y, result
+    int add(int x, int y) { // 메서드영역 시작
+        int result = x + y;
+        return result;
+    }                       // 메서드 영역 끝
+
+    int multiply(int x, int y) { // 메서드영역 시작
+        int result = x + y;
+        return result;
+    }                       // 메서드 영역 끝
+
+    -> 지역변수는 메서드가 종료되면 사라지기때문에
+       서로 다른 메서드의 변수 이름은 똑같아도 상관없다.
+
+- 메서드 호출
+    메서드이름(값1, 값2, ...); // 메서드를 호출하는 방법
+
+    print99danAll();        // void print99danAll()을 호출
+    int result = add(3, 5); // int add(int x, int y)를 호출하고, 결과를 result 에 저장
+
+                    public static void main(String args[]) {
+                        int result = add(3, 5); // 메서드 호출
+                    }                     | <- x 에 3, y 에 5를 대입
+                                int add(int x, int y) {
+                                    int result = x + y;
+                                    return result;
+                                }
+
+- 메서드의 실행 흐름
+    MyMath mm = new MyMath(); // 먼저 인스턴스를 생성한다.
+
+    long value = mm.add(1L, 2L); // 메서드를 호출한다.
+
+    long add(long a, long b) {
+        long result = a + b;
+        return result;
+    }
+
+    1. main 메서드에서 메서드 add 를 호출한다. 인수 1L 과 2L 이 메서드 add
+       매개변수 a, b 에 각각 복사(대입)된다.
+    2. 메서드 add 의 괄호 {} 안에 있는 문장들이 순서대로 수행된다.
+    3. 메서드 add 의 모든 문장이 실행되거나 return 문을 만나면,
+       호출한 메서드(main 메서드)로 되돌아와서 이후의 문장들을 실행한다.
+
+- return 문
+    실행 중인 메서드를 종료하고 호출한 곳으로 되돌아간다.
+
+    ex)
+    void printGugudan(int dan) {
+        if(!(2 <= dan && dan <= 9)) {
+            return; // dan 의 값이 2 ~ 9가 아닌경우, 호출한 곳으로 그냥 되돌아간다.
+        }
+
+        for(int i = 1; i <= 9; i++) {
+            System.out.printf("%d * %d = %d%n", dan, i, dan * i);
+        }
+//        return; // 반환 타입이 void 이므로 생략가능. 컴파일러가 자동 추가.
+    }
+
+    반환타입이 void 가 아닌 경우, 반드시 return 문 필요
+
+    int multiply(int x, int y) {
+        int result = x * y;
+
+        return result; // 반환타입이 void 가 아니므로 생략 불가.
+    }
+
+    int max(int a, int b) {
+        if(a > b) {
+            return a; // 조건식이 참일 때 실행 된다.
+        } else {
+            return b; // 조건식이 거짓일 때 실행 된다
+        }
+    }
+
+- 반환값
+
+    int add( int x, int y) {            int add(int x, int y) {
+        int result = x + y;    <--->         return x + y;
+        return result;                  }
+    }
+
+    int result = mm.add(3, 5);
+                                        return x + y;
+        int add(int x, int y) {    -->  return 3 + 5;
+            return x + y;          -->  return 8;
+        }
